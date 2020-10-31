@@ -37,12 +37,7 @@ class _LandingPageState extends State<LandingPage> {
         children: <Widget> [
           _getAppTitleWidget(),
           _getListViewWidget(),
-          Center(
-            child: RaisedButton(child: Text('Book'),
-            onPressed: (){
-              Navigator.pushReplacementNamed(context, '/book');
-            }),
-          )
+          SubmitButton(context: context)
         ],
       )
     );
@@ -107,6 +102,25 @@ class _LandingPageState extends State<LandingPage> {
       appBar: AppBar(title: Text('Barber Sharp'),
       backgroundColor: Colors.lightBlue,),
       body: _buildBody(),
+    );
+  }
+}
+
+class SubmitButton extends StatelessWidget {
+  const SubmitButton({
+    Key key,
+    @required this.context,
+  }) : super(key: key);
+
+  final BuildContext context;
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: RaisedButton(child: Text('Book'),
+      onPressed: (){
+        Navigator.pushReplacementNamed(context, '/book');
+      }),
     );
   }
 }
