@@ -1,0 +1,15 @@
+name: barbershop_app
+description: A new Flutter project.
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  uses-material-design: true
+  assets: 
+    - assets/barbers.json

@@ -1,0 +1,28 @@
+{
+    "barbers": [
+        {
+            "name": "Jason",
+            "id": 1
+        },
+        {
+            "name": "Jesse",
+            "id": 2
+        },
+        {
+            "name": "Kelly",
+            "id": 3
+        },
+        {
+            "name": "Nick",
+            "id": 4
+        },
+        {
+            "name": "Ryan",
+            "id": 5
+        },
+        {
+            "name": "Steph",
+            "id": 6
+        }
+    ]
+}
