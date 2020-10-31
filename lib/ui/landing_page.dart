@@ -10,7 +10,7 @@ class LandingPage extends StatefulWidget {
 class _LandingPageState extends State<LandingPage> {
 
   List<Barber> _barbers = [];
-  String selectedBarber = ''; 
+  String selectedBarber; 
 
   @override 
 
@@ -22,7 +22,7 @@ class _LandingPageState extends State<LandingPage> {
     String fileData = await DefaultAssetBundle.of(context).loadString("assets/barbers.json");
     setState((){
       _barbers = BarberApi.allBarbersFromJson(fileData);
-      
+      selectedBarber = _barbers[0].name;
     });
     print(_barbers);
   }
@@ -38,10 +38,29 @@ class _LandingPageState extends State<LandingPage> {
         children: <Widget> [
           _getAppTitleWidget(),
           _getListViewWidget(),
+          Center(
+            child: RaisedButton(child: Text('Book'),
+            onPressed: (){
+              Navigator.pushReplacementNamed(context, '/book');
+            }),
+          )
         ],
       )
     );
   }
+
+  // Gets the App Title and returns it
+  Widget _getAppTitleWidget() {
+    return new Text(
+      'Choose a Barber',
+      style: new TextStyle(
+        color: Colors.white,
+        fontWeight: FontWeight.bold,
+        fontSize: 15.0,
+      )
+    );
+  }
+
   Widget _getListViewWidget() {
     return new Flexible(
       child: new RefreshIndicator(
@@ -82,28 +101,14 @@ class _LandingPageState extends State<LandingPage> {
       ),
     );
   }
-  // Gets the App Title and returns it
-  Widget _getAppTitleWidget() {
-    return new Text(
-      'Barber Sharp',
-      style: new TextStyle(
-        color: Colors.white,
-        fontWeight: FontWeight.bold,
-        fontSize: 15.0,
-      )
-    );
-  }
-  // Loads json data into state object array called _barbers
-
 
   @override 
   Widget build(BuildContext context) {
     return new Scaffold(
       backgroundColor: Colors.grey,
+      appBar: AppBar(title: Text('Barber Sharp'),
+      backgroundColor: Colors.lightBlue,),
       body: _buildBody(),
     );
   }
-
-
-
 }
