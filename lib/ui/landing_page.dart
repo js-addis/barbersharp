@@ -35,22 +35,10 @@ class _LandingPageState extends State<LandingPage> {
       margin: const EdgeInsets.fromLTRB(8.0, 56.0, 8.0, 0.0),
       child: new Column(
         children: <Widget> [
-          _getAppTitleWidget(),
+          Header(),
           _getListViewWidget(),
           SubmitButton(context: context)
         ],
-      )
-    );
-  }
-
-  // Gets the App Title and returns it
-  Widget _getAppTitleWidget() {
-    return new Text(
-      'Choose a Barber',
-      style: new TextStyle(
-        color: Colors.white,
-        fontWeight: FontWeight.bold,
-        fontSize: 15.0,
       )
     );
   }
@@ -67,6 +55,7 @@ class _LandingPageState extends State<LandingPage> {
       )
     );
   }
+  
   Widget _buildBarberItem(BuildContext context, int index) {
     Barber barber = _barbers[index];
 
@@ -102,6 +91,24 @@ class _LandingPageState extends State<LandingPage> {
       appBar: AppBar(title: Text('Barber Sharp'),
       backgroundColor: Colors.lightBlue,),
       body: _buildBody(),
+    );
+  }
+}
+
+class Header extends StatelessWidget {
+  const Header({
+    Key key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      'Choose a Barber',
+      style: new TextStyle(
+        color: Colors.white,
+        fontWeight: FontWeight.bold,
+        fontSize: 15.0,
+      )
     );
   }
 }
