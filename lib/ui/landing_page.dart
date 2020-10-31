@@ -24,7 +24,6 @@ class _LandingPageState extends State<LandingPage> {
       _barbers = BarberApi.allBarbersFromJson(fileData);
       selectedBarber = _barbers[0].name;
     });
-    print(_barbers);
   }
   Future<Null> refresh() {
     _loadBarbers();
@@ -90,7 +89,6 @@ class _LandingPageState extends State<LandingPage> {
                 onChanged: (value) => {
                   setState(() {
                     selectedBarber = value;
-                    print(selectedBarber);
                   })
                 }
               ),
