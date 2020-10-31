@@ -10,7 +10,7 @@ class LandingPage extends StatefulWidget {
 class _LandingPageState extends State<LandingPage> {
 
   List<Barber> _barbers = [];
-  String selectedBarber; 
+  String selectedBarber = ''; 
 
   @override 
 
