@@ -22,9 +22,8 @@ class _LandingPageState extends State<LandingPage> {
     String fileData = await DefaultAssetBundle.of(context).loadString("assets/barbers.json");
     setState((){
       _barbers = BarberApi.allBarbersFromJson(fileData);
-      
+      selectedBarber = _barbers[0].name;
     });
-    print(_barbers);
   }
   Future<Null> refresh() {
     _loadBarbers();
@@ -36,12 +35,14 @@ class _LandingPageState extends State<LandingPage> {
       margin: const EdgeInsets.fromLTRB(8.0, 56.0, 8.0, 0.0),
       child: new Column(
         children: <Widget> [
-          _getAppTitleWidget(),
+          Header(),
           _getListViewWidget(),
+          SubmitButton(context: context)
         ],
       )
     );
   }
+
   Widget _getListViewWidget() {
     return new Flexible(
       child: new RefreshIndicator(
@@ -54,6 +55,7 @@ class _LandingPageState extends State<LandingPage> {
       )
     );
   }
+  
   Widget _buildBarberItem(BuildContext context, int index) {
     Barber barber = _barbers[index];
 
@@ -71,7 +73,6 @@ class _LandingPageState extends State<LandingPage> {
                 onChanged: (value) => {
                   setState(() {
                     selectedBarber = value;
-                    print(selectedBarber);
                   })
                 }
               ),
@@ -82,10 +83,27 @@ class _LandingPageState extends State<LandingPage> {
       ),
     );
   }
-  // Gets the App Title and returns it
-  Widget _getAppTitleWidget() {
-    return new Text(
-      'Barber Sharp',
+
+  @override 
+  Widget build(BuildContext context) {
+    return new Scaffold(
+      backgroundColor: Colors.grey,
+      appBar: AppBar(title: Text('Barber Sharp'),
+      backgroundColor: Colors.lightBlue,),
+      body: _buildBody(),
+    );
+  }
+}
+
+class Header extends StatelessWidget {
+  const Header({
+    Key key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      'Choose a Barber',
       style: new TextStyle(
         color: Colors.white,
         fontWeight: FontWeight.bold,
@@ -93,17 +111,23 @@ class _LandingPageState extends State<LandingPage> {
       )
     );
   }
-  // Loads json data into state object array called _barbers
+}
 
+class SubmitButton extends StatelessWidget {
+  const SubmitButton({
+    Key key,
+    @required this.context,
+  }) : super(key: key);
 
-  @override 
+  final BuildContext context;
+
+  @override
   Widget build(BuildContext context) {
-    return new Scaffold(
-      backgroundColor: Colors.grey,
-      body: _buildBody(),
+    return Center(
+      child: RaisedButton(child: Text('Book'),
+      onPressed: (){
+        Navigator.pushReplacementNamed(context, '/book');
+      }),
     );
   }
-
-
-
 }
